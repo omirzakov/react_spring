@@ -60,7 +60,7 @@ function Home(props) {
                     <div className="product-list row">
                         {
                             productList.map((product, i) => (
-                                <Product product={product} />
+                                <Product key={i} product={product} />
                             ))
                         }
                     </div>
