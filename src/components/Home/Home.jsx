@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import LoginForm from "./LoginForm";
 import Product from "./Product";
 import Profilebar from "./Profilebar";
+import AsideMenu from "./asidemenu/AsideMenu";
+import "./style/style.css";
 
 const productList = [
     {
@@ -40,7 +42,7 @@ function Home(props) {
         <div className="my-5">
             <div className="row">
                 <div className="col-3">
-                    <div className="login-form">
+                    <div className="login-form bg-light p-3 aside-menu">
                         {
                             props.isAuth === true ?
                             <Profilebar /> :
@@ -51,6 +53,7 @@ function Home(props) {
                                 setPassword={props.setPassword}
                                 setIsAuth={props.setIsAuth}  />
                         }
+                        <AsideMenu />
                     </div>
                 </div>
                 <div className="col-9">

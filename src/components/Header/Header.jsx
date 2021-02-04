@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 function Header ({isAuth, setIsAuth}) {
+    const logo = "https://lvgames.info/wp-content/uploads/2019/01/Nintendo-eShop-logo.jpg";
 
     function logOut() {
         setIsAuth(false);
@@ -11,7 +12,9 @@ function Header ({isAuth, setIsAuth}) {
     return (
         <div>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">LOGO</Navbar.Brand>
+                <Navbar.Brand href="/">
+                    <img src={logo} alt="Logo" width="100px"/>
+                </Navbar.Brand>
                 <Nav className="ml-auto">
                     {
                         !isAuth && <Nav.Link href="/register">Register</Nav.Link>

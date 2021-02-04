@@ -33,7 +33,7 @@ function LoginForm(props) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="bg-light p-3">
+        <Form onSubmit={handleSubmit} className="p-3">
             <Form.Group controlId="formBasicEmail">
                 <Form.Control onChange={handleChange} name="name" type="name" placeholder="Login" />
             </Form.Group>
