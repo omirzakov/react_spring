@@ -1,5 +1,26 @@
 import React, {useState} from "react";
 import LoginForm from "./LoginForm";
+import Product from "./Product";
+import Profilebar from "./Profilebar";
+
+const productList = [
+    {
+        name: "Iphone 6s",
+        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2249_0_320.webp"
+    },
+    {
+        name: "Iphone 7",
+        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_1084_0_320.webp"
+    },
+    {
+        name: "Iphone SE",
+        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2744_3_6_320.webp"
+    },
+    {
+        name: "Iphone XR",
+        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2758_0_6_320.webp"
+    }
+];
 
 
 function Home(props) {
@@ -22,7 +43,7 @@ function Home(props) {
                     <div className="login-form">
                         {
                             props.isAuth === true ?
-                            "Online" :
+                            <Profilebar /> :
                             <LoginForm 
                                 name={props.name} 
                                 password={props.password}
@@ -33,15 +54,10 @@ function Home(props) {
                     </div>
                 </div>
                 <div className="col-9">
-                    <div className="product-list">
+                    <div className="product-list row">
                         {
-                            props.items.map((item, i) => (
-                                <div className="my-3" key={i}>
-                                    {item.name}
-                                    <div className="btn btn-primary" onClick={() => getItem(item)}>
-                                        Button
-                                    </div>
-                                </div>
+                            productList.map((product, i) => (
+                                <Product product={product} />
                             ))
                         }
                     </div>

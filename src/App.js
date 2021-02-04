@@ -33,7 +33,7 @@ function App() {
     return (
         <div className="App">
             <div style={customStyles}>
-            <Header />
+            <Header isAuth = {isAuth} setIsAuth={setIsAuth} />
             <div style={{minHeight:"80vh"}}>
                 <Switch>
                     <Route exact path="/">
