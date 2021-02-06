@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
-import Product from "./Product";
+import Product from "../Products/Product";
 import Profilebar from "./Profilebar";
 import AsideMenu from "./asidemenu/AsideMenu";
 import "./style/style.css";
+import Loading from "../General/Loader/Loading";
 
 const productList = [
     {
@@ -26,17 +27,22 @@ const productList = [
 
 
 function Home(props) {
-    const [index, setIndex] = useState(0);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
-    const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };
+    useEffect(() => {
+        fetch("http://127.0.0.1:5001/products")
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            setData(data);
+            setLoading(false);
+            console.log(data)
+        })
+    }, []);
 
-    function getItem(item) {
-        alert("You added to basket " + item.name )
-    }
-  
 
     return (
         <div className="my-5">
@@ -45,13 +51,13 @@ function Home(props) {
                     <div className="login-form bg-light p-3 aside-menu">
                         {
                             props.isAuth === true ?
-                            <Profilebar /> :
-                            <LoginForm 
-                                name={props.name} 
-                                password={props.password}
-                                setName={props.setName}
-                                setPassword={props.setPassword}
-                                setIsAuth={props.setIsAuth}  />
+                                <Profilebar setData={setData} data={data} /> :
+                                <LoginForm
+                                    name={props.name}
+                                    password={props.password}
+                                    setName={props.setName}
+                                    setPassword={props.setPassword}
+                                    setIsAuth={props.setIsAuth} />
                         }
                         <AsideMenu />
                     </div>
@@ -59,7 +65,8 @@ function Home(props) {
                 <div className="col-9">
                     <div className="product-list row">
                         {
-                            productList.map((product, i) => (
+                            loading ? <Loading /> :
+                            data.map((product, i) => (
                                 <Product key={i} product={product} />
                             ))
                         }

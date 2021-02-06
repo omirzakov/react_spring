@@ -1,7 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import ProductAdd from "../Products/ProductAdd";
 
-function Profilebar() {
+function Profilebar({ data, setData }) {
 
     return (
         <Card  style={{ width: '18rem' }}>
@@ -12,6 +13,7 @@ function Profilebar() {
                     Fullname: Madiyar Umirzakov <br/>
                     City: Almaty
                 </Card.Text>
+                <ProductAdd data = {data} setData={setData} />
             </Card.Body>
         </Card>
     );

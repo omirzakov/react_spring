@@ -12,7 +12,7 @@ function Product({ product }) {
     return (
         <div className="p-3 col-4">
             <Card>
-                <Card.Img variant="top" className="p-5" src={product.image} />
+                <Card.Img variant="top" className="p-5" src={product.imageURL} />
                 <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
                 </Card.Body>
