@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { Switch, Route } from "react-router-dom";
+
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Header from "./components/Header/Header";
-import Test from "./components/About/Test";
 import Footer from "./components/Footer/Footer";
 
 const customStyles = {
@@ -23,6 +23,7 @@ const items = [
     }
 ]
 
+
 function App() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -32,6 +33,8 @@ function App() {
         <div className="App">
             <div style={customStyles}>
             <Header isAuth = {isAuth} setIsAuth={setIsAuth} />
+
+            
             <div style={{minHeight:"80vh"}}>
                 <Switch>
                     <Route exact path="/">
@@ -46,9 +49,6 @@ function App() {
 
                     <Route exact path="/about">
                         <About />
-                    </Route>
-                    <Route exact path="/test">
-                        <Test />
                     </Route>
                 </Switch>
             </div>

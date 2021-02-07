@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import LoginForm from "./LoginForm";
+import LoginForm from "../Authorization/LoginForm";
 import Product from "../Products/Product";
-import Profilebar from "./Profilebar";
+import Profilebar from "../Profile/Profilebar";
 import AsideMenu from "./asidemenu/AsideMenu";
 import "./style/style.css";
 import Loading from "../General/Loader/Loading";
