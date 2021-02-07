@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Electronic shop, мини интернет магазин на React, Spring
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
