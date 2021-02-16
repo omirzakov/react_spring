@@ -1,12 +1,25 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { useCookies } from "react-cookie";
 import Notifications, {notify} from 'react-notify-toast';
 
-function Product({ product }) {
+function Product({product}) {
+    const [cookies, setCookie, removeCookie] = useCookies(['basket']);
+    function addCard(name, id) {
 
-    function addCard(name) {
-        notify.show("You added " + name + " to basket", "success")
+        notify.show("You added " + name + " to basket", "success");
+        if (!cookies.basket) {
+            setCookie("basket", id);
+            return true;
+        }
+
+        let basket = cookies.basket;
+        basket = basket + " " + id;
+        setCookie("basket", basket);
+        let arr = basket.split(" ");
     }
+
+    
 
 
     return (
@@ -17,7 +30,7 @@ function Product({ product }) {
                     <Card.Title>{product.name}</Card.Title>
                 </Card.Body>
                 <Card.Footer className="text-left" style={{cursor:"pointer"}}>
-                    <small className="text-success" onClick={() => addCard(product.name)} >+ Add to card</small>
+                    <small className="text-success" onClick={() => addCard(product.name, product.id) } >+ Add to card</small>
                 </Card.Footer>
                 <Notifications  options={{zIndex: 200, top: '50px'}} />
             </Card>
