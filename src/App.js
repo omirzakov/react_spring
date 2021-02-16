@@ -5,6 +5,8 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import ProductDetail from "./components/Products/ProductDetail";
+import News from "./components/News/News";
 
 const customStyles = {
     maxWidth: "1350px",
@@ -29,6 +31,7 @@ function App() {
     const [password, setPassword] = useState("");
     const [isAuth, setIsAuth] = useState(false);
 
+    
     return (
         <div className="App">
             <div style={customStyles}>
@@ -47,9 +50,17 @@ function App() {
                               items={items} />
                     </Route>
 
-                    <Route exact path="/about">
-                        <About />
+                    <Route path="/news">
+                        <News name={name} 
+                              password={password}
+                              setName={setName}
+                              setPassword={setPassword}
+                              isAuth = {isAuth}
+                              setIsAuth={setIsAuth} 
+                              items={items} />
                     </Route>
+
+
                 </Switch>
             </div>
             <Footer />

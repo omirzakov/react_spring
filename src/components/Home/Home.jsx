@@ -6,26 +6,6 @@ import AsideMenu from "./asidemenu/AsideMenu";
 import "./style/style.css";
 import Loading from "../General/Loader/Loading";
 
-const productList = [
-    {
-        name: "Iphone 6s",
-        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2249_0_320.webp"
-    },
-    {
-        name: "Iphone 7",
-        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_1084_0_320.webp"
-    },
-    {
-        name: "Iphone SE",
-        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2744_3_6_320.webp"
-    },
-    {
-        name: "Iphone XR",
-        image: "https://object.pscloud.io/cms/cms/Photo/img_0_77_2758_0_6_320.webp"
-    }
-];
-
-
 function Home(props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);

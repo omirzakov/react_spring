@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -21,7 +22,7 @@ function ProductAdd({ setData, data }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        
         fetch("http://127.0.0.1:5001/products", {
             method: 'POST',
             headers: {
