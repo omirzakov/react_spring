@@ -8,6 +8,7 @@ import Loading from "../General/Loader/Loading";
 
 function Home(props) {
     const [data, setData] = useState([]);
+    const [err, setErr] = useState(false);
     const [loading, setLoading] = useState(true);
 
 
@@ -20,6 +21,9 @@ function Home(props) {
             setData(data);
             setLoading(false);
             console.log(data)
+        })
+        .catch(err => {
+            setErr(err);
         })
     }, []);
 
@@ -44,6 +48,7 @@ function Home(props) {
                 </div>
                 <div className="col-9">
                     <div className="product-list row">
+                        
                         {
                             loading ? <Loading /> :
                             data.map((product, i) => (

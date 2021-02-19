@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProductDetail from "./components/Products/ProductDetail";
 import News from "./components/News/News";
+import routes from "./components/routes";
 
 const customStyles = {
     maxWidth: "1350px",
@@ -40,27 +41,11 @@ function App() {
             
             <div style={{minHeight:"80vh"}}>
                 <Switch>
-                    <Route exact path="/">
-                        <Home name={name} 
-                              password={password}
-                              setName={setName}
-                              setPassword={setPassword}
-                              isAuth = {isAuth}
-                              setIsAuth={setIsAuth} 
-                              items={items} />
-                    </Route>
-
-                    <Route path="/news">
-                        <News name={name} 
-                              password={password}
-                              setName={setName}
-                              setPassword={setPassword}
-                              isAuth = {isAuth}
-                              setIsAuth={setIsAuth} 
-                              items={items} />
-                    </Route>
-
-
+                    {
+                        routes.map((route, i) => (
+                            <Route key={i} component={route.component} path={route.path} exact={true} />
+                        ))
+                    }
                 </Switch>
             </div>
             <Footer />

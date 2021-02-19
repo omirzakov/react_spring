@@ -21,7 +21,10 @@ function Header ({isAuth, setIsAuth}) {
                     {
                         !isAuth && <Nav.Link href="/register">Register</Nav.Link>
                     }
-                    <Link to="/news" className="nav-link">News</Link>
+                                        {
+                        isAuth && <Link className="nav-link"  to="/news">News</Link>
+                    }
+                    <Link to="/tasks/" className="nav-link" onClick={logOut}>Tasks</Link>
                     <Link to="#" className="nav-link" onClick={logOut}>{!isAuth ? "Login" : "Logout"}</Link>
                     <Nav.Link href="/ru">РУС</Nav.Link>
                     <Nav.Link href="/en">EN</Nav.Link>
