@@ -11,6 +11,8 @@ const Tasks = () => {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
+        document.title = "Задачи"
+
         axios.get("http://127.0.0.1:8000/allcards")
         .then(res => {
             const data = res.data;
@@ -18,7 +20,7 @@ const Tasks = () => {
             setLoading(false);
             setTasks(data);
             console.log(data)
-        })
+        });
     }, []);
 
     return (
@@ -30,8 +32,8 @@ const Tasks = () => {
                 <div className="row">
                     {
                         tasks.map((item, i) => (
-                            <div className="col-4 p-3">
-                                 <TaskItem task={item} key={i} />
+                            <div key={i} className="col-4 p-3">
+                                 <TaskItem task={item} />
                             </div>
                         ))
                     }
