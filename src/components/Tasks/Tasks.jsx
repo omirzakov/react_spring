@@ -4,6 +4,7 @@ import axios from "axios";
 import { Figure } from "react-bootstrap";
 import Loading from "../General/Loader/Loading";
 import TaskItem from "./TaskItem";
+import TaskForm from "./TaskForm";
 
 
 const Tasks = () => {
@@ -13,6 +14,10 @@ const Tasks = () => {
     useEffect(() => {
         document.title = "Задачи"
 
+        getTasks();
+    }, []);
+
+    function getTasks() {
         axios.get("http://127.0.0.1:8000/allcards")
         .then(res => {
             const data = res.data;
@@ -21,11 +26,12 @@ const Tasks = () => {
             setTasks(data);
             console.log(data)
         });
-    }, []);
+    }
 
     return (
         <div>
             <h2 className="mt-3">Задачи компании</h2>
+            <TaskForm getTasks={getTasks} />
 
             {
                 loading ? <Loading /> : 

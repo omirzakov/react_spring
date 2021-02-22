@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../General/Loader/Loading";
 import { Button } from "bootstrap";
 import "./styles/taskdetail.css"
+import TaskDetailForm from "./TaskDetailForm";
 
 
 const TaskDetail = () => {
@@ -17,23 +18,31 @@ const TaskDetail = () => {
     const [tasksLoad, setTasksLoad] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/card/${id}`)
-            .then(res => {
-                const data = res.data;
-                setLoading(false);
-                setTask(data);
-            });
+        getTask();
     }, []);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/cards/${id}`)
-            .then(res => {
-                const data = res.data;
-                console.log(data)
-                setTasksLoad(false);
-                setTasks(data);
-            })
+        getDetailTask();
     }, []);
+
+    const getTask = () => {
+        axios.get(`http://127.0.0.1:8000/card/${id}`)
+        .then(res => {
+            const data = res.data;
+            setLoading(false);
+            setTask(data);
+        });
+    }
+
+    const getDetailTask = () => {
+        axios.get(`http://127.0.0.1:8000/cards/${id}`)
+        .then(res => {
+            const data = res.data;
+            console.log(data)
+            setTasksLoad(false);
+            setTasks(data);
+        })
+    }
 
     return (
         <>
@@ -45,6 +54,8 @@ const TaskDetail = () => {
                         </p>
                     </div>
             }
+
+            <TaskDetailForm getDetailTask={getDetailTask} id={id} />
 
             {
                 !tasksLoad &&
