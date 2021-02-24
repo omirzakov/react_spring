@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 
-import { Accordion, Card, Figure, Form } from "react-bootstrap";
+import { Accordion, Card, Form } from "react-bootstrap";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../General/Loader/Loading";
-import { Button } from "bootstrap";
 import "./styles/taskdetail.css"
 import TaskDetailForm from "./TaskDetailForm";
 import Notifications, {notify} from 'react-notify-toast';
@@ -89,6 +88,37 @@ const TaskDetail = () => {
             })
     }
 
+    const handleChangeMain = (e) => {
+        const { name, value } = e.target;
+
+        setTask({...task, name: value});
+    }
+
+    const handleSubmitUpdateTask = (e) => {
+        e.preventDefault();
+
+        axios.put("http://127.0.0.1:8000/updatecard", task)
+            .then((res) => {
+                getTask();
+                notify.show("Изменение успешно сохранено");
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    const handleDeleteTask = () => {
+
+        axios.delete(`http://127.0.0.1:8000/deletecard/${task.id}`, task)
+            .then((res) => {
+                window.location.replace("/tasks/");
+            })
+            .catch((err) => {
+                notify.show("Чтобы удалить главную карточку, удалите все дочерние задачи");
+            })
+    }
+
+    //CASCADE
     
     return (
         <>
@@ -100,6 +130,20 @@ const TaskDetail = () => {
                         </p>
                     </div>
             }
+
+            <Form onSubmit={handleSubmitUpdateTask}>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Control name="name" onChange={handleChangeMain} type="text" placeholder="Text" />
+                </Form.Group>
+                <button type="submit" className="btn btn-primary">
+                    Обновить
+                </button>
+                <div className="btn btn-danger ml-3" onClick={handleDeleteTask}>
+                    Удалить
+                </div>
+            </Form>
+
+            <hr /> <br />
 
             <TaskDetailForm getDetailTask={getDetailTask} id={id} />
 
@@ -123,7 +167,7 @@ const TaskDetail = () => {
                                 <Accordion.Toggle  variant="link" eventKey="0">
                                     <div>Редактировать</div>
                                 </Accordion.Toggle>
-                                <div className="btn btn-primary ml-3 mb-1" onClick={() => deleteSubTask(task)}>
+                                <div className="btn btn-danger ml-3 mb-1" onClick={() => deleteSubTask(task)}>
                                     Удалить
                                 </div>
                                 </Card.Header>
