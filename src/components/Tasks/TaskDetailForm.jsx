@@ -3,6 +3,8 @@ import { Button } from "bootstrap";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
+import Notifications, {notify} from 'react-notify-toast';
+
 
 const TaskDetailForm = ({id, getDetailTask}) => {
     const [subTask, setTask] = useState({
@@ -27,7 +29,9 @@ const TaskDetailForm = ({id, getDetailTask}) => {
 
         axios.post('http://127.0.0.1:8000/addsubtask', subTask)
              .then(function (res) {
+                notify.show("Задача успешно добавлена");
                 getDetailTask();
+
              })
              .catch(function (err) {
                  console.log(err);
@@ -39,13 +43,10 @@ const TaskDetailForm = ({id, getDetailTask}) => {
     return (
         <Form onSubmit={handleSubmit} className="mb-5">
             <Form.Group controlId="formBasicEmail">
-                <Form.Control value={subTask.name} name="name" onChange={handleChange} type="text" placeholder="Enter email" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-                <Form.Control type="date" name="addedDate" onChange={handleChange} value={subTask.addedDate} />
+                <Form.Control value={subTask.name} name="name" onChange={handleChange} type="text" placeholder="Enter task" />
             </Form.Group>
             <button type="submit" className="btn btn-primary">Добавить</button>
+            <Notifications  options={{zIndex: 200, top: '30px', background:"green"}} />
         </Form>
     )
 }

@@ -38,11 +38,11 @@ const TaskForm = ({getTasks}) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-                <Form.Control value={task.name} name="name" onChange={handleChange} type="text" placeholder="Enter email" />
+                <Form.Control value={task.name} name="name" onChange={handleChange} type="text" placeholder="Enter task" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Control type="date" name="addedDate" value={task.addedDate} />
+                <Form.Control type="date" name="addedDate" />
             </Form.Group>
             <button type="submit" className="btn btn-primary">Добавить</button>
         </Form>
