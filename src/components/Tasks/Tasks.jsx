@@ -5,11 +5,13 @@ import { Figure } from "react-bootstrap";
 import Loading from "../General/Loader/Loading";
 import TaskItem from "./TaskItem";
 import TaskForm from "./TaskForm";
+import TaskSearch from "./TaskSearch";
 
 
 const Tasks = () => {
     const [tasks,setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isEmpy, setIsEmpty] = useState(false);
     
     useEffect(() => {
         document.title = "Задачи"
@@ -31,12 +33,14 @@ const Tasks = () => {
     return (
         <div>
             <h2 className="mt-3">Задачи компании</h2>
+            <TaskSearch setIsEmpty={setIsEmpty} getTasks={getTasks} setTasks={setTasks} />
             <TaskForm getTasks={getTasks} />
 
             {
                 loading ? <Loading /> : 
                 <div className="row">
-                    {
+                    
+                    {   isEmpy ? <h1 className="text-center m-auto my-3">Task not found</h1> :
                         tasks.map((item, i) => (
                             <div key={i} className="col-4 p-2">
                                  <TaskItem task={item} />
