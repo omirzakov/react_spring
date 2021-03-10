@@ -1,6 +1,8 @@
-import React from "react";
 import About from "./About/About";
+import LoginPage from "./Authorization/LoginPage";
+import RegisterPage from "./Authorization/RegisterPage";
 import Home from "./Home/Home";
+import ProfilePage from "./Profile/ProfilePage";
 import TaskDetail from "./Tasks/TaskDetail";
 import Tasks from "./Tasks/Tasks";
 
@@ -20,6 +22,18 @@ const routes = [
     {
         path: "/tasks/:id/",
         component: TaskDetail
+    },
+    {
+        path: "/register/",
+        component: RegisterPage
+    },
+    {
+        path: "/login/",
+        component: LoginPage
+    },
+    {
+        path: "/profile/",
+        component: ProfilePage
     }
 ];
 
