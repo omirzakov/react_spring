@@ -1,12 +1,8 @@
 import React, {createContext, useState} from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import ProductDetail from "./components/Products/ProductDetail";
-import News from "./components/News/News";
 import routes from "./components/routes";
 import { useCookies } from "react-cookie";
 
